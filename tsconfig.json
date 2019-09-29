@@ -1,0 +1,13 @@
+//Backup TSCONFIG incase I spill my cereal milk on my project 🙁
+{
+    "compilerOptions": {
+      //Targets
+      "target": "es6",
+      "lib": ["es2019", "dom"],
+      "module": "commonjs",
+  
+      //Experimental
+      "jsx": "preserve",
+      "experimentalDecorators": true
+    }
+  }

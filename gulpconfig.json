@@ -1,0 +1,29 @@
+{
+  "source": "gulpJson.ts",
+  "actions": [
+    {
+      "action": "gulp-typescript"
+    },
+    {
+      "action": "gulp-concat",
+      "arguments": ["gulpJson.js"],
+      "destination": "./"
+    },
+    {
+      "action": "gulp-babel",
+      "arguments": [
+        {
+          "presets": [
+            ["minify", {"builtIns": false}]
+          ],
+          "comments": false
+        }
+      ]
+    },
+    {
+      "action": "gulp-concat",
+      "arguments": ["gulpJsonCompressed.js"],
+      "destination": "./"
+    }
+  ]
+}
