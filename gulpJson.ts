@@ -78,7 +78,7 @@ function main(args: string[]) {
   switch (args[0]) {
     case "run":
       let act: string;
-      let src = __dirname;
+      let src: string;
       if (args[1] && pathRegex.test(args[1]))
         src = args[1];
       else {
@@ -86,6 +86,7 @@ function main(args: string[]) {
           src = args[2];
         act = args[1];
       }
+      src = src ? path.join(__dirname, src) : __dirname;
       src = !src || src.endsWith(config) ? src : path.join(src, config);
       
       let data: {[x: string]: Task} | Task;
