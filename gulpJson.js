@@ -67,6 +67,7 @@ var gulp = require("gulp");
 var child = require("child_process");
 var config = "gulpconfig.json";
 var pathRegex = /((?:[\/\\]?[a-zA-Z.*]+)*)/;
+var isPath = /\/|\\/g;
 function isTask(item) {
     var props = Object.getOwnPropertyNames(item);
     return [["source", String], ["actions", Array]].every(function (check) {
@@ -131,10 +132,10 @@ function main(args) {
         case "run":
             var act = void 0;
             var src = void 0;
-            if (args[1] && pathRegex.test(args[1]))
+            if (args[1] && isPath.test(args[1]))
                 src = args[1];
             else {
-                if (args[2] && pathRegex.test(args[2]))
+                if (args[2] && isPath.test(args[2]))
                     src = args[2];
                 act = args[1];
             }

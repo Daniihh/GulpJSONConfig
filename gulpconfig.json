@@ -6,8 +6,8 @@
     },
     {
       "action": "gulp-concat",
-      "arguments": ["gulpJson.js"],
-      "destination": "./"
+      "destination": "./",
+      "arguments": ["gulpJson.js"]
     },
     {
       "action": "gulp-babel",
@@ -22,8 +22,8 @@
     },
     {
       "action": "gulp-concat",
-      "arguments": ["gulpJsonCompressed.js"],
-      "destination": "./"
+      "destination": "./",
+      "arguments": ["gulpJsonCompressed.js"]
     }
   ]
 }

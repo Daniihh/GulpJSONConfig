@@ -32,6 +32,7 @@ import child = require("child_process");
 
 const config = "gulpconfig.json";
 const pathRegex = /((?:[\/\\]?[a-zA-Z.*]+)*)/;
+const isPath = /\/|\\/g;
 
 type Task = {source: string, destination: string, actions: Action[]};
 type Action = {action: string, destination?: string, arguments?: any};
@@ -39,8 +40,8 @@ type Action = {action: string, destination?: string, arguments?: any};
 function isTask(item: any): item is Task {
   let props = Object.getOwnPropertyNames(item);
   return [["source", String], ["actions", Array]].every((check) => 
-    props.some((prop) => check[0] == prop && Object.getPrototypeOf(item[prop]).constructor == check[1])
-  );
+    props.some((prop) => check[0] == prop &&
+      Object.getPrototypeOf(item[prop]).constructor == check[1]));
 }
 
 function aquire(packName: string): Promise<any> {
@@ -58,7 +59,7 @@ async function executeTask(task: Task) {
   const fillPack = async ({action: act, ...rest}: Action) => {
     let path = act.split(".");
     let mod = await aquire(path.shift());
-    let action: Function = path.reduce<any, any>((prev, cur) => prev[cur], mod);
+    let action: Function = path.reduce((prev, cur) => prev[cur], mod);
     return {action, ...rest};
   };
   const npmPacks = await Promise.all(task.actions.map(fillPack));
@@ -79,10 +80,10 @@ function main(args: string[]) {
     case "run":
       let act: string;
       let src: string;
-      if (args[1] && pathRegex.test(args[1]))
+      if (args[1] && isPath.test(args[1]))
         src = args[1];
       else {
-        if (args[2] && pathRegex.test(args[2]))
+        if (args[2] && isPath.test(args[2]))
           src = args[2];
         act = args[1];
       }

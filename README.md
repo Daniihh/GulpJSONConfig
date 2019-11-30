@@ -1,3 +1,3 @@
 JSON Config for Gulp
 ====================
-Stop programming gulp with javascript! Use json! Coming soon to an NPM database most likely not near you.
+I've decided to archive this project, because I've grown to not like the idea of it. ~~Although I have plans for something bigger similar to this.~~ If you like what you see here, feel free to take it and run with it.
